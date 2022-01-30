@@ -11,6 +11,7 @@ import {
   CircleIcon,
   CrossIcon,
   CrownIcon,
+  DrawIcon,
   RefreshIcon,
 } from '../../assets/icon/icon';
 import {checkWinner} from '../../utils/helper';
@@ -31,9 +32,9 @@ const Home = () => {
     let value = tileState[row][col];
     switch (value) {
       case 1:
-        return <CrossIcon height={50} width={50} />;
+        return <CrossIcon height={50} width={50} color={colors.xiconColor} />;
       case -1:
-        return <CircleIcon height={60} width={60} />;
+        return <CircleIcon height={60} width={60} color={colors.oIconColor} />;
       default:
         return <View />;
     }
@@ -83,7 +84,7 @@ const Home = () => {
       case 'sai':
         return (
           <View style={{flexDirection: 'row'}}>
-            <CrownIcon height={30} width={30} />
+            <CrownIcon height={30} width={30} color={colors.xiconColor} />
             <Text
               style={{
                 fontSize: 20,
@@ -99,7 +100,7 @@ const Home = () => {
       case 'sha':
         return (
           <View style={{flexDirection: 'row'}}>
-            <CrownIcon height={30} width={30} />
+            <CrownIcon height={30} width={30} color={colors.oIconColor} />
             <Text
               style={{
                 fontSize: 20,
@@ -115,13 +116,13 @@ const Home = () => {
       case 'drawn':
         return (
           <View style={{flexDirection: 'row'}}>
-            <CrownIcon height={30} width={30} />
+            <DrawIcon height={40} width={40} color={colors.black} />
             <Text
               style={{
                 fontSize: 20,
                 fontWeight: 'bold',
                 marginLeft: 5,
-                top: 3,
+                top: 5,
                 color: colors.darkGrey,
               }}>
               Game ended in draw
@@ -225,7 +226,7 @@ const Home = () => {
             borderColor: colors.grey,
             borderRadius: 25,
           }}>
-          <RefreshIcon height={20} width={20} />
+          <RefreshIcon height={20} width={20} color={colors.grey} />
           <Text
             style={{
               marginLeft: 10,

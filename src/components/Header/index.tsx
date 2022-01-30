@@ -39,12 +39,12 @@ const Header = () => {
           flexDirection: 'column',
           alignItems: 'center',
         }}>
-        <CrossIcon height={18} width={18} />
+        <CrossIcon height={18} width={18} color={colors.xiconColor} />
         <Text style={styles.playerOneText}>sairaj</Text>
       </View>
       <View
         style={{flexDirection: 'column', alignItems: 'center', marginLeft: 10}}>
-        <CircleIcon height={20} width={20} />
+        <CircleIcon height={20} width={20} color={colors.oIconColor} />
         <Text style={styles.playerTwoText}>shawn</Text>
       </View>
     </View>
