@@ -1,9 +1,9 @@
 import React from 'react';
-import {ImageStyle, StyleSheet, TouchableOpacity} from 'react-native';
+import {StyleSheet, TouchableOpacity, ViewStyle} from 'react-native';
 import {colors} from '../../utils/colors';
 
 interface TileProps {
-  props?: ImageStyle;
+  props?: ViewStyle;
   icon?: JSX.Element;
   onTilePress?: () => void;
 }

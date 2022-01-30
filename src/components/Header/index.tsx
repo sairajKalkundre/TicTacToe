@@ -45,7 +45,7 @@ const Header = () => {
       <View
         style={{flexDirection: 'column', alignItems: 'center', marginLeft: 10}}>
         <CircleIcon height={20} width={20} color={colors.oIconColor} />
-        <Text style={styles.playerTwoText}>shawn</Text>
+        <Text style={styles.playerTwoText}>sahil</Text>
       </View>
     </View>
   );

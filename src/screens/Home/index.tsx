@@ -1,11 +1,5 @@
 import React, {useState} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {SafeAreaView, Text, TouchableOpacity, View} from 'react-native';
 import Tile from '../../components/Tile';
 import {
   CircleIcon,
@@ -18,6 +12,7 @@ import {checkWinner} from '../../utils/helper';
 import Row from '../../components/Row';
 import Header from '../../components/Header';
 import {colors} from '../../utils/colors';
+import styling from './home.style';
 
 const Home = () => {
   const [tileState, setTileState] = useState<number[][]>([
@@ -70,6 +65,7 @@ const Home = () => {
     }
   };
 
+  //To reset the game
   const startNewGame = () => {
     setTileState([
       [0, 0, 0],
@@ -77,71 +73,35 @@ const Home = () => {
       [0, 0, 0],
     ]);
     setWinnerId('');
+    setCurrentPlayer(1);
   };
 
+  //Function which returns results
   const Showresult = (winId: string): JSX.Element => {
     switch (winId) {
       case 'sai':
         return (
           <View style={{flexDirection: 'row'}}>
             <CrownIcon height={30} width={30} color={colors.xiconColor} />
-            <Text
-              style={{
-                fontSize: 20,
-                fontWeight: 'bold',
-                marginLeft: 5,
-                top: 3,
-                color: colors.darkGrey,
-              }}>
-              sairaj has won
-            </Text>
+            <Text style={styling.resultTextStyle}>sairaj has won</Text>
           </View>
         );
       case 'sha':
         return (
           <View style={{flexDirection: 'row'}}>
             <CrownIcon height={30} width={30} color={colors.oIconColor} />
-            <Text
-              style={{
-                fontSize: 20,
-                fontWeight: 'bold',
-                marginLeft: 5,
-                top: 3,
-                color: colors.darkGrey,
-              }}>
-              shawn has won
-            </Text>
+            <Text style={styling.resultTextStyle}>shawn has won</Text>
           </View>
         );
       case 'drawn':
         return (
           <View style={{flexDirection: 'row'}}>
             <DrawIcon height={40} width={40} color={colors.black} />
-            <Text
-              style={{
-                fontSize: 20,
-                fontWeight: 'bold',
-                marginLeft: 5,
-                top: 5,
-                color: colors.darkGrey,
-              }}>
-              Game ended in draw
-            </Text>
+            <Text style={styling.resultTextStyle}>Game ended in draw</Text>
           </View>
         );
       default:
-        return (
-          <Text
-            style={{
-              fontSize: 20,
-              fontWeight: 'bold',
-              marginLeft: 5,
-              top: 3,
-              color: colors.darkGrey,
-            }}>
-            Result
-          </Text>
-        );
+        return <Text style={styling.resultTextStyle}>Result</Text>;
     }
   };
 
@@ -160,113 +120,63 @@ const Home = () => {
         }}>
         <Row>
           <Tile
-            props={styles.leftTopTileStyle}
+            props={styling.leftTopTileStyle}
             icon={showIcon(0, 0)}
             onTilePress={() => onTilePress(0, 0)}
           />
           <Tile
-            props={styles.middleTopTileStyle}
+            props={styling.middleTopTileStyle}
             icon={showIcon(0, 1)}
             onTilePress={() => onTilePress(0, 1)}
           />
           <Tile
-            props={styles.rightTopTileStyle}
+            props={styling.rightTopTileStyle}
             icon={showIcon(0, 2)}
             onTilePress={() => onTilePress(0, 2)}
           />
         </Row>
         <Row>
           <Tile
-            props={styles.centerLeftTileStyle}
+            props={styling.centerLeftTileStyle}
             icon={showIcon(1, 0)}
             onTilePress={() => onTilePress(1, 0)}
           />
           <Tile icon={showIcon(1, 1)} onTilePress={() => onTilePress(1, 1)} />
           <Tile
-            props={styles.centerRightTileStyle}
+            props={styling.centerRightTileStyle}
             icon={showIcon(1, 2)}
             onTilePress={() => onTilePress(1, 2)}
           />
         </Row>
         <Row>
           <Tile
-            props={styles.bottomLeftTileStyle}
+            props={styling.bottomLeftTileStyle}
             icon={showIcon(2, 0)}
             onTilePress={() => onTilePress(2, 0)}
           />
           <Tile
-            props={styles.bottomMiddleTileStyle}
+            props={styling.bottomMiddleTileStyle}
             icon={showIcon(2, 1)}
             onTilePress={() => onTilePress(2, 1)}
           />
           <Tile
-            props={styles.bottomRightTileStyle}
+            props={styling.bottomRightTileStyle}
             icon={showIcon(2, 2)}
             onTilePress={() => onTilePress(2, 2)}
           />
         </Row>
       </View>
-      <View
-        style={{
-          alignItems: 'center',
-          justifyContent: 'flex-start',
-          flex: 1,
-        }}>
+      <View style={styling.footerContainer}>
         {Showresult(winnerId)}
         <TouchableOpacity
           onPress={() => startNewGame()}
-          style={{
-            flexDirection: 'row',
-            marginTop: 20,
-            borderWidth: 1,
-            height: 35,
-            width: 150,
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderColor: colors.grey,
-            borderRadius: 25,
-          }}>
+          style={styling.newGameContainer}>
           <RefreshIcon height={20} width={20} color={colors.grey} />
-          <Text
-            style={{
-              marginLeft: 10,
-              fontSize: 18,
-              fontWeight: 'bold',
-              color: colors.darkGrey,
-            }}>
-            New Game
-          </Text>
+          <Text style={styling.newGameTextStyle}>New Game</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  leftTopTileStyle: {
-    borderLeftWidth: 0,
-    borderTopWidth: 0,
-  },
-  middleTopTileStyle: {borderTopWidth: 0},
-  rightTopTileStyle: {
-    borderRightWidth: 0,
-    borderTopWidth: 0,
-  },
-  centerLeftTileStyle: {borderLeftWidth: 0},
-  centerRightTileStyle: {borderRightWidth: 0},
-  bottomLeftTileStyle: {
-    borderLeftWidth: 0,
-    borderBottomWidth: 0,
-  },
-  bottomMiddleTileStyle: {borderBottomWidth: 0},
-  bottomRightTileStyle: {
-    borderRightWidth: 0,
-    borderBottomWidth: 0,
-  },
-  iconStyle: {
-    height: 10,
-    width: 10,
-  },
-});
 
 export default Home;
